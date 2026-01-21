@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <style>
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      width: 320px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .google {
+      background: #4285f4;
+      color: white;
+    }
+
+    .phone {
+      background: #25d366;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h2>Login</h2>
+
+    <button class="google" onclick="googleLogin()">Login with Google</button>
+    <button class="phone" onclick="window.location.href='phone.html'">
+      Login with Phone
+    </button>
+  </div>
+
+  <script>
+    // 🔥 Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function googleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          alert("Login Successful!");
+          console.log(result.user);
+          // redirect after login
+          window.location.href = "dashboard.html";
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+  </script>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyB90sC7Gb-4qIhR0wvj3PyYOnB1aORylA0",
+    authDomain: "rutu-s-dynamic-2aefd.firebaseapp.com",
+    projectId: "rutu-s-dynamic-2aefd",
+    storageBucket: "rutu-s-dynamic-2aefd.firebasestorage.app",
+    messagingSenderId: "265024800041",
+    appId: "1:265024800041:web:728539a244c5fcf7e22338"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
+</body>
+</html>
